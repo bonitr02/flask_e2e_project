@@ -14,20 +14,26 @@ Base = declarative_base()
 class NDC(Base):
     __tablename__ = 'drugs'
     id = Column(Integer, primary_key=True, autoincrement=True)
-
+    ndc = Column(String(50), nullable=True)
+    gen_name = Column(String(50), nullable=True)
+    mfg = Column(String(50), nullable=True)
+    brand_name = Column(String(50), nullable=True)
+    dosage_form = Column(String(50), nullable=True)
+    route = Column(String(50), nullable=True)
+    dea_schedule = Column(String(50), nullable=True)
 
 class Prescribing(Base):
     __tablename__ = 'opiates'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    year = Column(String(50), nullable=True)
+    year = Column(Integer, nullable=True)
     state = Column(String(50), nullable=True)
     breakout = Column(String(50), nullable=True)
-    tot_presc                        
-    tot_opi_prov                     
-    tot_opi_claim                   
-    total_claim           
-    opioid_rate  
+    tot_presc = Column(Integer, nullable=True)                   
+    tot_opi_prov = Column(Integer, nullable=True)                     
+    tot_opi_claim = Column(Float, nullable=True)             
+    total_claim = Column(Integer, nullable=True)         
+    opioid_rate = Column(Float, nullable=True)
        
 ### Part 2 - initial sqlalchemy-engine to connect to db:
 
