@@ -3,6 +3,9 @@ import pandas as pd
 import geopandas as gpd
 import json
 import requests
+import matplotlib.pyplot as plt
+import io
+import base64
 
 app = Flask(__name__)
 
@@ -26,9 +29,42 @@ def fda_search():
     return jsonify(r0_results)
 
 
-@app.route('/')
-def home():
-    return render_template('index.html', data=df)
+#@app.route('/')
+#def home():
+#    return render_template('index.html', data=df)
+
+#states= merged_map['state'], data value= merged_map['Opioid_Prscrbng_Rate']
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    #states = sorted(merged_map['state'].unique())
+    states = merged_map['state'].unique()
+    #states = sorted(merged_map['state'])
+
+    selected_state = request.form.get('state') or states[0]
+    img = create_plot(selected_state)
+
+    return render_template("index.html", states=states, selected_state=selected_state, img=img)
+
+def create_plot(state):
+    #rate = merged_map[merged_map['Opioid_Prscrbng_Rate'] == state ]
+    #selected_state_avg = df_teeth[df_teeth['StateDesc'] == state]['Data_Value'].mean()
+
+    overall_avg = merged_map['Opioid_Prscrbng_Rate'].mean()
+    selected_state_avg = merged_map[merged_map['state'] == state]['Opioid_Prscrbng_Rate'].mean()
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.bar(['Selected State', 'Overall Average'], [selected_state_avg, overall_avg], color=['cyan', 'aquamarine'])
+    ax.axhline(selected_state_avg, color='gray', linestyle='dashed', alpha=0.7)
+    ax.set_ylabel('Data Value (Age-adjusted prevalence) - Percent')
+    ax.set_ylim(0, 10)
+    ax.set_title('All Teeth Lost in NY, CA and FL by Age-adjusted PrevalenceComparison')
+    
+    # Convert plot to PNG image
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    
+    return base64.b64encode(img.getvalue()).decode()
 
 if __name__ == '__main__':
     app.run(

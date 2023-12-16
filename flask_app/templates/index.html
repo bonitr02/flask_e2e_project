@@ -50,8 +50,20 @@
 	
 
 	</div>
+    <div>
+          <h2>Average Opioid Prescribing Rate by State vs National </h2>
 
+          <form method="post">
+              <select name="state" onchange="this.form.submit()">
+                  {% for state in states %}
+                  <option value="{{ state }}" {% if state == selected_state %} selected {% endif %}>{{ state }}</option>
+                  {% endfor %}
+              </select>
+          </form>
+          
+          <img src="data:image/png;base64,{{ img }}" alt="Opioid Prescribing Rate Visualization" />
 
+    </div>
 	<footer class="bg-gray-900">	
 		<div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
 

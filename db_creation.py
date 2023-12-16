@@ -21,19 +21,6 @@ class NDC(Base):
     dosage_form = Column(String(50), nullable=True)
     route = Column(String(50), nullable=True)
     dea_schedule = Column(String(50), nullable=True)
-
-class Prescribing(Base):
-    __tablename__ = 'opiates'
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    year = Column(Integer, nullable=True)
-    state = Column(String(50), nullable=True)
-    breakout = Column(String(50), nullable=True)
-    tot_presc = Column(Integer, nullable=True)                   
-    tot_opi_prov = Column(Integer, nullable=True)                     
-    tot_opi_claim = Column(Float, nullable=True)             
-    total_claim = Column(Integer, nullable=True)         
-    opioid_rate = Column(Float, nullable=True)
        
 ### Part 2 - initial sqlalchemy-engine to connect to db:
 
