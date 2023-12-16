@@ -1,0 +1,8 @@
+flask
+pandas
+geopandas
+json
+requests
+matplotlib.pyplot
+io
+base64

@@ -1,9 +1,9 @@
 # Specifies the base image
 FROM python:3.10-slim-buster
 # Sets the working directory
-WORKDIR /flask_app
+WORKDIR /app
 # Copy files from the host
-COPY . /flask_app/
+COPY . /app/
 # Run the linux command; installs packages using requirements.txt file
 RUN pip install -r requirements.txt
 # Expose ports

@@ -4,14 +4,15 @@
 import os
 from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey, text
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base, Session
 from dotenv import load_dotenv
+from sqlalchemy.ext.declarative import declarative_base
+# remved Session
 
-load_dotenv('.env')
+load_dotenv('/home/rianne_bonitto/flask_e2e_project/.env')
 
 Base = declarative_base()
 
-class NDC(Base):
+class ndc(Base):
     __tablename__ = 'drugs'
     id = Column(Integer, primary_key=True, autoincrement=True)
     ndc = Column(String(50), nullable=True)
