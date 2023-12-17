@@ -7,6 +7,6 @@ COPY . /app/
 # Run the linux command; installs packages using requirements.txt file
 RUN pip install -r requirements.txt
 # Expose ports
-EXPOSE 5000
+EXPOSE 8000
 # command for executing the container
 CMD ["python", "app.py"]

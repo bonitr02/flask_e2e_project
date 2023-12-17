@@ -1,9 +1,7 @@
 flask
-pandA
 geopandas
-json
 requests
-matplotlib.pyplot
-io
-base64
 authlib
+matplotlib
+sqlalchemy
+python-dotenv

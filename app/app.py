@@ -124,12 +124,14 @@ def fda_search():
         logging.error(f"An error occurred! {e}")
         return "try again"
 
-def data(data=df):
+@app.route('/drugs')
+def drugs(data=df):
     try:
-        data = data
+        data = data.sample(30)
         
         logging.debug("Index page accessed")
-        return render_template('index.html', data=data)
+   
+        return render_template('drugs.html', data=data)
     
     except Exception as e:
         logging.error(f"An error occurred! {e}")
@@ -155,11 +157,11 @@ def create_plot(state):
         selected_state_avg = merged_map[merged_map['state'] == state]['Opioid_Prscrbng_Rate'].mean()
 
         fig, ax = plt.subplots(figsize=(10, 6))
-        ax.bar(['Selected State', 'Overall Average'], [selected_state_avg, overall_avg], color=['cyan', 'aquamarine'])
+        ax.bar(['Selected State', 'National Average'], [selected_state_avg, overall_avg], color=['green', 'gray'])
         ax.axhline(selected_state_avg, color='gray', linestyle='dashed', alpha=0.7)
-        ax.set_ylabel('Data Value (Age-adjusted prevalence) - Percent')
+        ax.set_ylabel('% Prescribed')
         ax.set_ylim(0, 10)
-        ax.set_title('All Teeth Lost in NY, CA and FL by Age-adjusted PrevalenceComparison')
+        ax.set_title('% Controlled Medications Prescribed by State vs National (2021 Medicare Report)')
     
         # Convert plot to PNG image
         img = io.BytesIO()

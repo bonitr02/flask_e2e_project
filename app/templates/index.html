@@ -4,83 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Prescription Drug Information</title>
+    <title>Medication Information and Search Tool</title>
     <meta name="author" content="name">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-<style>:root{
-::-webkit-scrollbar{height:10px;width:10px}::-webkit-scrollbar-track{background:#efefef;border-radius:6px}::-webkit-scrollbar-thumb{background:#d5d5d5;border-radius:6px}::-webkit-scrollbar-thumb:hover{background:#c4c4c4}</style>
-</head>
-<body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
-	<!--Header-->
+    <style>
+        .smooth {transition: box-shadow 0.3s ease-in-out;}
+        ::selection{background-color: aliceblue}
+        :root{::-webkit-scrollbar{height:10px;width:10px;}::-webkit-scrollbar-track{background:#efefef;border-radius:6px}
+        ::-webkit-scrollbar-thumb{background:#d5d5d5;border-radius:6px} ::-webkit-scrollbar-thumb:hover{background:#cc44c4}}
+        /*scroll to top*/
+         .scroll-top {position: fixed;z-index: 50;padding: 0;right: 30px;bottom: 100px;opacity: 0;visibility: hidden;transform: translateY(15px);height: 46px;width: 46px;cursor: pointer;display: flex;align-items: center;justify-content: center;border-radius: 50%;transition: all .4s ease;border: none;box-shadow: inset 0 0 0 2px #ccc;color: #ccc;background-color: #fff;}.scroll-top.is-active {opacity: 1;visibility: visible;transform: translateY(0);}.scroll-top .icon-tabler-arrow-up {position: absolute;stroke-width: 2px;stroke: #333;}.scroll-top svg path {fill: none;}.scroll-top svg.progress-circle path {stroke: #333;stroke-width: 4;transition: all .4s ease;}.scroll-top:hover {color: var(--ghost-accent-color);}.scroll-top:hover .progress-circle path, .scroll-top:hover .icon-tabler-arrow-up {stroke: var(--ghost-accent-color);}
+    </style>
+</head>
+<body class="bg-white-200 font-sans leading-normal tracking-normal">
+
+	<!--Nav completed-->
+	<nav class="bg-gray-900 p-4 mt-0 w-full">
+        <div class="container mx-auto flex items-center">
+		    <div class="flex text-white font-extrabold">
+				<a class="flex text-white text-base no-underline hover:text-white hover:no-underline" href="/index"> 
+					<span class="hidden w-0 md:w-auto md:block pl-1">MIST Homepage </span>
+				</a>
+            </div>
+			<div class="flex pl-4 text-sm">
+				<ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="mr-2">
+                        <a class="inline-block py-2 px-2 text-white no-underline" href="/drugs" class="hover:underline" >Drugs</a>
+                      </li>
+                    <li class="mr-2">
+					<a class="inline-block py-2 px-2 text-white no-underline" href="/logout" class="logout-btn" >Logout</a>
+				  </li>
+
+				</ul>
+			</div>
+        </div>
+	</nav>
+
+	<!--Header completed-->
 	<div class="w-full m-0 p-0 bg-cover bg-bottom" style="background-image:url('cover.jpg'); height: 60vh; max-height:460px;">
 			<div class="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
 				<!--Title-->
-					<p class="text-white font-extrabold text-3xl md:text-5xl">
-						Something here about what the page is about 
-                        Second line
-					</p>
-					<p class="text-xl md:text-2xl text-gray-500"> More Information About Prescription Drugs</p>
+					<h1 class="text-black font-extrabold text-3xl md:text-5xl">
+                        Welcome to the Medication Information and Search Tool!<br><br>
+					</h1>
+					<p class="text-xl md:text-2xl text-gray-600 space-x-1"> 
+                        Your resource for medication information and statistics
+                    </p>
 			</div>
 		</div>
+
+<!--Section for API Search Terms-->
 		
-		<!--Container-->
-		<div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
-			<div class="mx-0 sm:mx-6">
 
-				<div class="container mx-auto flex items-center font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
-					<h2 class="font-bold break-normal text-2xl md:text-4xl"> Nice pretty green box</h2>
-                    <a href="https://lh3.googleusercontent.com/pw/ABLVV85AD6wed50UKhOwT5CagkSDxxQGjIZxqNu3TzigSSNzOp60QiXFZ2NUs6tlG3r4Ge_SZ3mpPVkkpIwcQdrn2ma16Qp5vaG-mOWgycQ2Qt06b5n-MOSu=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/pw/ABLVV85AD6wed50UKhOwT5CagkSDxxQGjIZxqNu3TzigSSNzOp60QiXFZ2NUs6tlG3r4Ge_SZ3mpPVkkpIwcQdrn2ma16Qp5vaG-mOWgycQ2Qt06b5n-MOSu=w506-h315-p-k" /> </a>
-					<div class="w-full text-center pt-4">
-					</div>
-				</div>
-
-    
-				<div class="container mx-auto flex items-center font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
-					<h2 class="font-bold break-normal text-2xl md:text-4xl"> Nice pretty green box</h2>
-					<h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Second line in green box</h3>
-					<div class="w-full text-center pt-4">
-					</div>
-				</div>
-			
-		</div>
-	
-
-	</div>
-    <div>
-          <h2>Average Opioid Prescribing Rate by State vs National </h2>
-
-          <form method="post">
-              <select name="state" onchange="this.form.submit()">
-                  {% for state in states %}
-                  <option value="{{ state }}" {% if state == selected_state %} selected {% endif %}>{{ state }}</option>
-                  {% endfor %}
-              </select>
-          </form>
-          
-          <img src="data:image/png;base64,{{ img }}" alt="Opioid Prescribing Rate Visualization" />
-
+<section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-green-500 bg-blend-multiply">
+    <div class="px-2 mx-auto max-w-screen-xl text-center py-12 lg:py-23">
+        <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">To access the API:</h2>
+        <p class="mb-8 text-lg font-normal text-white lg:text-xl sm:px-16 lg:px-48">1. In the address bar, delete '/index' and type in 'class?class=' </p>
+        <p class="mb-8 text-lg font-normal text-white lg:text-xl sm:px-16 lg:px-48">2. Type in a controlled substance class as shown below: </p>
+        <p class="mb-8 text-lg font-normal text-white lg:text-xl sm:px-16 lg:px-48">3. Hit 'Enter', producing up to 100 drug results in JSON from the FDA of the class requested </p>        
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                    <ul class="mx-auto px-4 w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">CI</li>
+                        <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">CII</li>
+                        <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">CIII</li>
+                        <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">CIV</li>
+                        <li class="w-full px-4 py-2 rounded-b-lg">CV</li>
+                    </ul>
+        </div>
     </div>
+</section>
 
-    <div>
-        <a href="/logout" class="logout-btn" style="text-decoration:none;">
-            <div class="btn-text">
-                Logout
-            </div>
+<!-- Sections for Opioid Interactive chart and Map-->
+
+<section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-white bg-blend-multiply">
+    <div class="px-2 mx-auto max-w-screen-xl text-center py-12 lg:py-23">
+    <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-black md:text-4xl lg:text-4xl">Average Opioid Prescribing Rate(%) by State vs National </h2>
+    <form method="post" >
+        <select name="state" onchange="this.form.submit()">
+            {% for state in states %}
+            <option value="{{ state }}" {% if state == selected_state %} selected {% endif %}>{{ state }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <img class="mx-auto" src="data:image/png;base64,{{ img }}" alt="Opioid Prescribing Rate Visualization" />
+<!-- Add the map-->
+
+<h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-black md:text-4xl lg:text-4xl"> Geospatial Map of Opioid Prescribing Rate </h2>
+    <figure class="relative mx-auto max-w-screen-xl transition-all duration-300 cursor-pointer">
+        <a href="#">
+        <img class="rounded-lg mx-auto max-w-screen-xl" src="https://lh3.googleusercontent.com/pw/ABLVV85AD6wed50UKhOwT5CagkSDxxQGjIZxqNu3TzigSSNzOp60QiXFZ2NUs6tlG3r4Ge_SZ3mpPVkkpIwcQdrn2ma16Qp5vaG-mOWgycQ2Qt06b5n-MOSu=w2400?source=screenshot.guru" alt="image description">
         </a>
+    </figure>
+
+
     </div>
+</section>
 
-
+<!-- footer completed -->
 	<footer class="bg-gray-900">	
 		<div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
-
 			<div class="w-full mx-auto flex flex-wrap items-center">
 				<div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
 					<a class="text-gray-900 no-underline hover:text-gray-900 hover:no-underline" href="#">
-						<span class="text-base text-gray-200"> <p>© 2023 More About Prescription Drugs. All Rights Reserved.</p></span>
+						<span class="text-base text-gray-200"> <p>© 2023 Medication Information and Search Tool. All Rights Reserved.</p></span>
 					</a>
 				</div>
 				
