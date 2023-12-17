@@ -6,10 +6,49 @@ import requests
 import matplotlib.pyplot as plt
 import io
 import base64
+import os
+from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey, text
+from sqlalchemy.orm import relationship, Session, declarative_base
+from dotenv import load_dotenv
 
+
+load_dotenv('.env')  # Load environment variables from .env file
+
+# Database connection settings from environment variables
+DB_HOST = os.getenv("DB_HOST")
+DB_DATABASE = os.getenv("DB_DATABASE")
+DB_USERNAME = os.getenv("DB_USERNAME")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = int(os.getenv("DB_PORT", 3306))
+DB_CHARSET = os.getenv("DB_CHARSET", "utf8mb4")
+
+# Connect to the database
+connectionString = (
+    f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+    f"?charset={DB_CHARSET}"
+)
+'''
+# Configure engine
+engine = create_engine(connectionString, echo=False)
+connection = engine.connect()
+
+# Try and read tables data from the database
+tables = pd.read_sql("SHOW TABLES", engine)
+print(tables)
+test2 = pd.read_sql("SELECT * FROM drugs LIMIT 5;", engine)
+print(test2)
+
+#Import sql drug database
+
+drug_db = pd.read_sql("SELECT * FROM drugs;", engine)
+print(drug_db)
+
+drug_db.to_csv('/home/rianne_bonitto/flask_e2e_project/data/mysql_drug_db.csv')
+
+'''
 app = Flask(__name__)
 
-df = pd.read_csv('/home/rianne_bonitto/flask_e2e_project/data/clean_drugsummary.csv')
+df = pd.read_csv('/home/rianne_bonitto/flask_e2e_project/data/mysql_drug_db.csv')
 merged_map = pd.read_csv('/home/rianne_bonitto/flask_e2e_project/data/drug_spendingclean_geolocation.csv')
 
 @app.route('/class', methods =['GET'])
@@ -33,22 +72,19 @@ def fda_search():
 #def home():
 #    return render_template('index.html', data=df)
 
-#states= merged_map['state'], data value= merged_map['Opioid_Prscrbng_Rate']
+def data(data=df):
+    data = data
+    return render_template('index.html', data=data)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    #states = sorted(merged_map['state'].unique())
     states = merged_map['state'].unique()
-    #states = sorted(merged_map['state'])
-
     selected_state = request.form.get('state') or states[0]
     img = create_plot(selected_state)
 
     return render_template("index.html", states=states, selected_state=selected_state, img=img)
 
 def create_plot(state):
-    #rate = merged_map[merged_map['Opioid_Prscrbng_Rate'] == state ]
-    #selected_state_avg = df_teeth[df_teeth['StateDesc'] == state]['Data_Value'].mean()
-
     overall_avg = merged_map['Opioid_Prscrbng_Rate'].mean()
     selected_state_avg = merged_map[merged_map['state'] == state]['Opioid_Prscrbng_Rate'].mean()
 

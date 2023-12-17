@@ -33,4 +33,8 @@ etc.
 
 
 
-## 
+## Azure SQL Database
+picture
+make sure to turn off reqire secure transport
+
+## MySQL workbench
