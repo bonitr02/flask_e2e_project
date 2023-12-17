@@ -1,8 +1,9 @@
 flask
-pandas
+pandA
 geopandas
 json
 requests
 matplotlib.pyplot
 io
 base64
+authlib

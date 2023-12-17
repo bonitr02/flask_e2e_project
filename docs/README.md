@@ -30,8 +30,8 @@ etc.
     DB_PASSWORD = 
     DB_PORT = 
     DB_CHARSET = 
-
-
+    GOOGLE_CLIENT_ID = 
+    GOOGLE_CLIENT_SECRET = 
 
 ## Azure SQL Database
 picture
