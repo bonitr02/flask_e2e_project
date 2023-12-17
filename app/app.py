@@ -59,8 +59,8 @@ drug_db.to_csv('/home/rianne_bonitto/flask_e2e_project/data/mysql_drug_db.csv')
 
 '''
 # Import mysql drug database and drug spending geolocation database
-df = pd.read_csv('/home/rianne_bonitto/flask_e2e_project/data/mysql_drug_db.csv')
-merged_map = pd.read_csv('/home/rianne_bonitto/flask_e2e_project/data/drug_spendingclean_geolocation.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/bonitr02/flask_e2e_project/main/data/mysql_drug_db.csv')
+merged_map = pd.read_csv('https://raw.githubusercontent.com/bonitr02/flask_e2e_project/main/data/drug_spendingclean_geolocation.csv')
 
 # Configure google client 
 GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
@@ -92,7 +92,10 @@ def google():
     print('REDIRECT URL: ', redirect_uri)
     session['nonce'] = generate_token()
     
-    redirect_uri = "https://8000-cs-296425122942-default.cs-us-east1-vpcf.cloudshell.dev/google/auth/"
+    #local host
+    #redirect_uri = "https://8000-cs-296425122942-default.cs-us-east1-vpcf.cloudshell.dev/google/auth/"
+    
+    redirect_uri = "https://finalprojectrb.azurewebsites.net/google/auth/"
     return oauth.google.authorize_redirect(redirect_uri, nonce=session['nonce'])
 
 @app.route('/google/auth/')
