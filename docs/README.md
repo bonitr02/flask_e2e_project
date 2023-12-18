@@ -75,6 +75,9 @@ Prior to deploying code, first ensure that:
 ## <b> MySQL workbench<br>
 ![Picture](mysql_db.png "Text to show on mouseover")<br><br><br>
 
+## <b> Logging Sample<br>
+![Picture](logging sample.png "Text to show on mouseover")
+
 ## <b> Docker Container Deployment<br>
 ![Picture](docker_container.png "Text to show on mouseover")
 ![Picture](docker_run_localhost.png "Text to show on mouseover")<br><br><br>
